@@ -10,7 +10,7 @@ module AutoSchema
       end
       
       DATABASE_OPTIONS = [
-        :default
+        :default, :limit
       ]
 
       def compare column

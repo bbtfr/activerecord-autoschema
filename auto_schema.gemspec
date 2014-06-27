@@ -7,11 +7,11 @@ require "auto_schema/version"
 Gem::Specification.new do |s|
   s.name        = "auto_schema"
   s.version     = AutoSchema::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of AutoSchema."
-  s.description = "TODO: Description of AutoSchema."
+  s.authors     = ["bbtfr"]
+  s.email       = ["bbtfrr@gmail.com"]
+  s.homepage    = "https://github.com/bbtfr/auto_schema"
+  s.summary     = "Define database schema in model."
+  s.description = "Automatically update the database structure when the code is updated."
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
