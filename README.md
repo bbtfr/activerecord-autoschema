@@ -8,7 +8,7 @@ Getting Started
 This gem is still in development! But you can try it by adding the following line to your Gemfile.
 
 ```ruby
-gem 'auto_schema', github: 'bbtfr/auto_schema'
+gem 'activerecord-autoschema', github: 'bbtfr/activerecord-autoschema'
 ```
 
 
