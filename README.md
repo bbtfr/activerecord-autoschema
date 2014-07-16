@@ -42,8 +42,8 @@ and refresh your web page, the column `title` will be removed and new column `ca
 
 TODO
 ---
-1. More column type (:string, :text, :integer, :float, :decimal, :datetime, :time, :date, :binary, :boolean by now), more options (:default, :limit by now) support
-2. Works with other gems' migration DSL, like Paperclip's `t.attachement`
+1. More column type (:string, :text, :integer, :float, :decimal, :datetime, :time, :date, :binary, :boolean by now), more options (:default, :limit by now) support.
+2. Works with other gems' migration DSL, like Paperclip's `t.attachement`.
 3. Find a way to `rename_column`, but not remove then create new one.
 
 
