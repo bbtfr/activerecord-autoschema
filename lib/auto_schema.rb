@@ -1,38 +1,42 @@
-require 'auto_schema/adapters/column'
-require 'auto_schema/adapters/table'
+require_relative 'auto_schema/adapters/column'
+require_relative 'auto_schema/adapters/index'
+require_relative 'auto_schema/adapters/table'
 
 module AutoSchema
   extend ActiveSupport::Concern
 
   module ClassMethods
     def table options = {}
-      table = Adapters::Table.new(options)
+      table = Adapters::Table.new(table_name, options)
       yield table
  
       # Create table unless existed
       unless table_exists?
-        ActiveRecord::Migration.create_table table_name
+        table.create!
       end
  
       # Remove columns if undefined
-      connection.columns(table_name).each do |existe_column|
-        column_name = existe_column.name
-        next if column_name == "id"
+      connection.columns(table_name).each do |exist_column|
+        column_name = exist_column.name
+        next if column_name == primary_key
 
         column = table.columns.delete column_name
         if column
-          unless column.compare existe_column
+          unless column.compare exist_column
 
           end
         else
-          ActiveRecord::Migration.remove_column table_name, column_name
+          column.remove!
         end
       end
  
       # Create columns if defined
-      table.columns.each do |column_name, non_existe_column|
-        ActiveRecord::Migration.add_column table_name, column_name, 
-          non_existe_column.type, non_existe_column.options
+      table.columns.each do |_, non_exist_column|
+        non_exist_column.create!
+      end
+
+      table.indexes.each do |index|
+        index.create! unless index.exists?
       end
 
     end

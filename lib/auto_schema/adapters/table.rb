@@ -1,15 +1,31 @@
 module AutoSchema
   module Adapters
     class Table
-      attr_reader :options, :columns
+      attr_reader :name, :options, :columns, :indexes
  
-      def initialize options = {}
+      def initialize name, options = {}
+        @name = name
         @options = options
         @columns = {}
+        @indexes = []
       end
  
+      def create!
+        ActiveRecord::Migration.create_table @name
+      end
+
       def column name, type, options = {}
-        columns[name.to_s] = Column.new name, type, options
+        index name if options[:index]
+        @columns[name.to_s] = Column.new @name, name, type, options
+      end
+
+      def index name
+        @indexes << Index.new @name, name 
+      end
+
+      def timestamps
+        column :created_at, :datetime
+        column :updated_at, :datetime
       end
 
       DATABASE_TYPES = [
