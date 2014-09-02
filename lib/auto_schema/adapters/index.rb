@@ -1,11 +1,12 @@
 module AutoSchema
   module Adapters
     class Index
-      attr_reader :table_name, :name
+      attr_reader :table_name, :name, :options
  
-      def initialize table_name, name
+      def initialize table_name, name, options = {}
         @table_name = table_name
         @name = name
+        @options = options
       end
 
       def exists?

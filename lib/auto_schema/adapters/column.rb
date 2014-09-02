@@ -3,7 +3,7 @@ module AutoSchema
     class Column
       attr_reader :table_name, :name, :type, :options
  
-      def initialize table_name, name, type, options={}
+      def initialize table_name, name, type, options = {}
         @table_name = table_name
         @name = name
         @type = type
