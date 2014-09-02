@@ -45,6 +45,9 @@ AutoSchema also support Rails style column type, eg: `:timestamps`, `:references
 class TestModel
     
     table do
+        t.integer :user_id
+        t.index   :user_id
+
         t.string :title, limit: 128, null: false
         t.text   :desc
         t.references :category, index: true
@@ -64,7 +67,7 @@ AutoSchema now support column types:
 
 AutoSchema now support column options:
 
-> :default, :limit, :null
+> :default, :limit, :null, :index
 
 TODO
 ---
