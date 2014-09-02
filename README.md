@@ -33,19 +33,47 @@ For example, add a new line and delete an existed line:
 class TestModel
     
     table do
-        t.integer :category_id
+        t.text :desc, index: true
     end
 
 end
 ```
-and refresh your web page, the column `title` will be removed and new column `category_id` will be created in your database.
+and refresh your web page, the column `title` will be removed and new column `desc` with an index will be created in your database.
+
+AutoSchema also support Rails style column type, eg: `:timestamps`, `:references`:
+```ruby
+class TestModel
+    
+    table do
+        t.string :title, limit: 128, null: false
+        t.text   :desc
+        t.references :category, index: true
+        t.boolean :published, index: true
+
+        t.attachement :image
+
+        t.timestamps
+    end
+
+end
+```
+
+AutoSchema now support column types:
+
+> :string, :text, :integer, :float, :decimal, :datetime, :time, :date, :binary, :boolean, :timestamps, :references, :attachement
+
+AutoSchema now support column options:
+
+> :default, :limit, :null
 
 TODO
 ---
-1. More column type (:string, :text, :integer, :float, :decimal, :datetime, :time, :date, :binary, :boolean by now), more options (:default, :limit by now) support.
-2. Works with other gems' migration DSL, like Paperclip's `t.attachement`.
-3. Find a way to `rename_column`, but not remove then create new one.
+1. Works with other gems' migration DSL, like Paperclip's `t.attachement`.
+2. Find a way to `rename_column`, but not remove then create new one.
 
+CHANGELOG
+---
+0.0.2 `:timestamps` `:references` `options[:null]` `index` support
 
 License
 ---
